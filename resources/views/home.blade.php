@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:btn>
-        <a href="#" class="btn btn-primary">
+        <a href="{{route('tarefa.criar')}}" class="btn btn-primary">
             Criar Tarefa
         </a>
     </x-slot:btn>
@@ -39,8 +39,7 @@
             @endphp
 
             <x-tarefa :data=$tarefas[0]/>
-            <x-tarefa :data=$tarefas[1]/>
-            <x-tarefa :data=$tarefas[2]/>
+            
         </div>
     </section>
 </x-layout>
