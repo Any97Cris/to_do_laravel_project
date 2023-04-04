@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TarefaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+//Home
+Route::get('/',[HomeController::class, 'index'])->name('home');
 
-Route::get('/login', function () {
-    return view('login');
-});
+//Autenticação
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::get('/registrar', [AuthController::class, 'registrar'])->name('registrar');
+
+//Tarefas
+Route::get('/tarefa', [TarefaController::class, 'index'])->name('tarefa.view');
+Route::get('/tarefa/criar_tarefa', [TarefaController::class, 'criar'])->name('tarefa.criar');
+Route::get('/tarefa/editar', [TarefaController::class, 'editar'])->name('tarefa.editar');
+Route::get('/tarefa/excluir', [TarefaController::class, 'excluir'])->name('tarefa.excluir');
+
