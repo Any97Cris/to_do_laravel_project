@@ -26,6 +26,7 @@ class TarefaFactory extends Factory
         }
 
         return [
+            'esta_feito' => $this->faker->boolean(55),
             'titulo' => $this->faker->text(30),
             'descricao' => $this->faker->dateTime(),
             'due_data' => $this->faker->dateTime(),

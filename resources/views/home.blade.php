@@ -30,15 +30,10 @@
                 <option value="1">Todas as Tarefas</option>
             </select>
         </div>
-        <div class="task_list">
-            @php
-                $tarefas = [
-                    ['id' => 1,'done' => false, 'titulo' => 'Primeira Tarefa', 'categoria' => 'Categoria 1'],
-                    ['id' => 2,'done' => false, 'titulo' => 'Segundo Tarefa', 'categoria' => 'Categoria 2'],
-                ]
-            @endphp
-
-            <x-tarefa :data=$tarefas[0]/>
+        <div class="task_list">            
+            @foreach ($tarefas as $tarefa)
+                <x-tarefa :data=$tarefa />
+            @endforeach            
             
         </div>
     </section>

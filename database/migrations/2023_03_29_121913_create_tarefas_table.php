@@ -17,6 +17,7 @@ return new class extends Migration
     {
         Schema::create('tarefas', function (Blueprint $table) {
             $table->id();
+            $table->boolean('esta_feito')->default(false);
             $table->string('titulo');
             $table->dateTime('due_data');
             $table->string('descricao');

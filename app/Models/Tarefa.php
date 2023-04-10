@@ -12,6 +12,7 @@ class Tarefa extends Model
     use HasFactory;
 
     protected $fillable = [
+        'esta_feito',
         'titulo',
         'desccricao',
         'user_id',
