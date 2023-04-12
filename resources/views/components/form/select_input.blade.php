@@ -1,5 +1,5 @@
 <div class="inputArea">
-    <label for="categoria">
+    <label for="{{$name}}">
         Categoria
     </label>
     <select id="{{$name}}" name="{{$name}}" requiered="{{empty($requiered) ? 'requiered' : ''}}">
