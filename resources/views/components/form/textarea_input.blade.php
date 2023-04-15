@@ -5,6 +5,6 @@
     <textarea id="{{$name}}" name="{{$name}}" 
     type="{{empty($type) ? 'text' : $type}}" 
     placeholder="{{$placeholder ?? ''}}" 
-    requiered = "{{empty($requiered) ? 'requiered' : ''}}"></textarea>
+    requiered = "{{empty($requiered) ? 'requiered' : ''}}">{{$value ?? ''}}</textarea>
     
 </div>

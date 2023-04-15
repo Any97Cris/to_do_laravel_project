@@ -14,9 +14,10 @@ class Tarefa extends Model
     protected $fillable = [
         'esta_feito',
         'titulo',
-        'desccricao',
+        'due_data',
+        'descricao',
         'user_id',
-        'catogoria_id'
+        'categoria_id'
     ];
 
     public function user(){

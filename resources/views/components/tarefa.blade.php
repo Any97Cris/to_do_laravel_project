@@ -11,7 +11,7 @@
     <div class="priority">
         <div class="sphere"></div>
         <div>{{$data['categoria']->titulo ?? ''}}</div>
-    </div>
+    </div>    
     <div class="action">
         <a href="{{route('tarefa.editar', ['id' => $data['id']])}}">
             <img src="/assets/images/icon-edit.png" alt="icone_editar">
