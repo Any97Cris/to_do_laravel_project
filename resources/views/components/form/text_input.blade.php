@@ -6,5 +6,5 @@
     type="{{empty($type) ? 'text' : $type}}" 
     placeholder="{{$placeholder ?? ''}}" 
     value="{{$value ?? ''}}"
-    requiered = "{{empty($requiered) ? 'requiered' : ''}}" />
+    required = "{{empty($required) ? 'required' : ''}}" />
 </div>

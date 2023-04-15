@@ -21,7 +21,9 @@ Route::get('/',[HomeController::class, 'index'])->name('home');
 
 //Autenticação
 Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login_action', [AuthController::class, 'login_action'])->name('login_action');
 Route::get('/registrar', [AuthController::class, 'registrar'])->name('registrar');
+Route::post('/registrar_action', [AuthController::class, 'registrar_action'])->name('registrar_action');
 
 //Tarefas
 Route::get('/tarefa', [TarefaController::class, 'index'])->name('tarefa.view');

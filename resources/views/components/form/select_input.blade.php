@@ -2,7 +2,7 @@
     <label for="{{$name}}">
         Categoria
     </label>
-    <select id="{{$name}}" name="{{$name}}" requiered="{{empty($requiered) ? 'requiered' : ''}}">
+    <select id="{{$name}}" name="{{$name}}" required="{{empty($required) ? 'required' : ''}}">
         <option selected disabled name="Sele" value="">Categoria</option>
         {{$slot}}
     </select>

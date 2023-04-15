@@ -7,5 +7,5 @@
            name="{{$name}}"            
            value="1" 
            {{$checked ? 'checked' : ''}}          
-           requiered = "{{empty($requiered) ? 'requiered' : ''}}">
+           required = "{{empty($required) ? 'required' : ''}}">
 </div>

@@ -13,7 +13,7 @@
             {{-- Título --}}
             <x-form.text_input name="titulo" 
                                label="Título da Tarefa" 
-                               requiered="requiered" 
+                               required="required" 
                                value="{{$tarefa->titulo}}"
                                placeholder="Digite aqui o título da tarefa" />
             
@@ -21,7 +21,7 @@
             <x-form.check name="esta_feito" 
                           label="Tarefa Realizada?" 
                           checked="{{$tarefa->esta_feito}}" 
-                          requiered="requiered"
+                          required="required"
                           />
 
             {{-- Data --}}
@@ -29,10 +29,10 @@
                                name="due_data" 
                                label="Data da Tarefa" 
                                value="{{$tarefa->due_data}}"
-                               requiered="requiered"/>
+                               required="required"/>
             
             {{-- Categoria --}}
-            <x-form.select_input name="categoria_id" label="Categoria" equiered="requiered">
+            <x-form.select_input name="categoria_id" label="Categoria" required="required">
                 @foreach ($categorias as $categoria)
                     <option value="{{$categoria->id}}"
                         @if ($categoria->id == $tarefa->id)
@@ -46,7 +46,7 @@
             {{-- Descrição Tarefa --}}
             <x-form.textarea_input name="descricao" 
                                    label="Descrição" 
-                                   requiered="requiered" 
+                                   required="required" 
                                    value="{{$tarefa->descricao}}"
                                    placeholder="Gigite a descrição da tarefa" />
 
