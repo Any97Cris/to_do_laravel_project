@@ -28,13 +28,11 @@ class AuthController extends Controller
     }
 
     public function login_action(Request $request){
-        $email = $request->email;
-
-        $data = User::find($email);
-
-        if(!$data){
-            return redirect(route('login'));
-        }
+        
+        $validador = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+        ]);
 
         return redirect(route('home'));
     }
