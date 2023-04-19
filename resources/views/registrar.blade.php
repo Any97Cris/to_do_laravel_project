@@ -5,8 +5,17 @@
         </a>
     </x-slot:btn>
 
-    <section id="task_section">
+    <section id="task_section">        
         <h1>Registrar-se</h1>
+
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <ul class="error">
+                    <li>{{$error}}</li>
+                </ul>
+            @endforeach
+        @endif
+
         <form method="POST" action="{{route('registrar_action')}}">
             @csrf
             {{-- Título --}}

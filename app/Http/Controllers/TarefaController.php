@@ -20,7 +20,7 @@ class TarefaController extends Controller
     }
 
     public function criar_action(Request $request){
-        $tarefas = $request->only(['titulo', 'categoria_id', 'descricao']);
+        $tarefas = $request->only(['titulo', 'categoria_id', 'descricao', 'due_data']);
         $tarefas['user_id'] = 1;
         $dbTarefa = Tarefa::create($tarefas);
         return redirect(route('home'));
@@ -72,5 +72,12 @@ class TarefaController extends Controller
 
 
         return redirect(route('home'));
+    }
+
+    public function update(Request $request){
+        $tarefa = Tarefa::findOrFail($request->tarefaId);
+        $tarefa->esta_feito = $request->status;
+        $tarefa->save();
+        return ['success' => true];
     }
 }

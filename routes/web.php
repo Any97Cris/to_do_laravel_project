@@ -16,8 +16,7 @@ use App\Http\Controllers\TarefaController;
 |
 */
 
-//Home
-Route::get('/',[HomeController::class, 'index'])->name('home');
+
 
 //Autenticação
 Route::get('/login', [AuthController::class, 'index'])->name('login');
@@ -25,11 +24,24 @@ Route::post('/login_action', [AuthController::class, 'login_action'])->name('log
 Route::get('/registrar', [AuthController::class, 'registrar'])->name('registrar');
 Route::post('/registrar_action', [AuthController::class, 'registrar_action'])->name('registrar_action');
 
-//Tarefas
-Route::get('/tarefa', [TarefaController::class, 'index'])->name('tarefa.view');
-Route::get('/tarefa/criar_tarefa', [TarefaController::class, 'criar'])->name('tarefa.criar');
-Route::post('/tarefa/criar_tarefa_action', [TarefaController::class, 'criar_action'])->name('tarefa.criar_action');
-Route::get('/tarefa/editar', [TarefaController::class, 'editar'])->name('tarefa.editar');
-Route::post('/tarefa/editar_action', [TarefaController::class, 'editar_action'])->name('tarefa.editar_action');
-Route::get('/tarefa/excluir', [TarefaController::class, 'excluir'])->name('tarefa.excluir');
+// Middleware
+Route::middleware(['auth'])->group(function(){
+    //Home
+    Route::get('/',[HomeController::class, 'index'])->name('home');
+
+    //Tarefas
+    Route::get('/tarefa', [TarefaController::class, 'index'])->name('tarefa.view');
+    Route::get('/tarefa/criar_tarefa', [TarefaController::class, 'criar'])->name('tarefa.criar');
+    Route::post('/tarefa/criar_tarefa_action', [TarefaController::class, 'criar_action'])->name('tarefa.criar_action');
+    Route::get('/tarefa/editar', [TarefaController::class, 'editar'])->name('tarefa.editar');
+    Route::post('/tarefa/editar_action', [TarefaController::class, 'editar_action'])->name('tarefa.editar_action');
+    Route::get('/tarefa/excluir', [TarefaController::class, 'excluir'])->name('tarefa.excluir');
+
+    // Logout
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    //Checked
+    Route::post('/tarefa/update', [TarefaController::class, 'update'])->name('tarefa.update');
+});
+
 

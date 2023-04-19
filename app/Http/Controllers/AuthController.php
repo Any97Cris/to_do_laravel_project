@@ -4,14 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     public function index(Request $request){
+        if(Auth::check()){
+            return redirect()->route('home');
+        }
         return view('login');
     }
 
     public function registrar(Request $request){
+        if(Auth::check()){
+            return redirect()->route('home');
+        }
         return view('registrar');
     }
 
@@ -23,6 +31,7 @@ class AuthController extends Controller
         ]);
         
         $dados_conta = $request->only(['name', 'email', 'password']);
+        $dados_conta['password'] = Hash::make($dados_conta['password']);
         $data = User::create($dados_conta);
         return redirect(route('login'));
     }
@@ -34,6 +43,14 @@ class AuthController extends Controller
             'password' => 'required|min:6'
         ]);
 
-        return redirect(route('home'));
+        if(Auth::attempt($validador)){
+            return redirect()->route('home');
+        }
+    }
+
+    public function logout(){
+        Auth::logout();
+
+        return redirect()->route('login');
     }
 }
