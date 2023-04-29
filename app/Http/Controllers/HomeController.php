@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Tarefa;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -15,13 +16,14 @@ class HomeController extends Controller
             $filtrarData = date('Y-m-d'); 
         }; 
         
-        $tarefas['data_slide'] = '15 de Dez';
-        $tarefas['data_botao_anterior'] = '1999-07-25';
-        $tarefas['data_botao_proximo'] = '2023-04-19';
+        $carbonDate = Carbon::createFromDate($filtrarData);
+        $dataSlide = $carbonDate->translatedFormat('d').' de '. ucfirst($carbonDate->translatedFormat('M'));
+        $data_botao_anterior = $carbonDate->addDay(-1)->format('Y-m-d');
+        $data_botao_proximo = $carbonDate->addDay(2)->format('Y-m-d');
 
         $tarefas = Tarefa::whereDate('due_data', $filtrarData)->get()->take(5);
         $autenticacao = Auth::user();
         
-        return view('home', ['tarefas' => $tarefas, 'autenticacao' => $autenticacao]);
+        return view('home', ['tarefas' => $tarefas, 'autenticacao' => $autenticacao, 'dataSlide' => $dataSlide,'data_botao_anterior' => $data_botao_anterior, 'data_botao_proximo' => $data_botao_proximo]);
     }
 }

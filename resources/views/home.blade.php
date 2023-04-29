@@ -13,9 +13,9 @@
             <div class="graph_header-line"></div>
             <div class="graph_header-date">
                 <a href="{{route('home', ['date' => $data_botao_anterior])}}">
-                <img src="/assets/images/icon-prev.png">
-            </a>
-                {{$data_slide}}
+                    <img src="/assets/images/icon-prev.png">
+                </a>
+               {{  $dataSlide  }}
                 <a href="{{route('home', ['date' => $data_botao_proximo])}}">
                     <img src="/assets/images/icon-next.png">
                 </a>
@@ -33,8 +33,10 @@
     </section>
     <section class="list">
         <div class="list-header">
-            <select name="" id="" class="list_header-select">
-                <option value="1">Todas as Tarefas</option>
+            <select name="" id="" class="list_header-select" onchange="mudarEstatosTarefa(this)">
+                <option value="toda_tarefa">Todas as Tarefas</option>
+                <option value="tarefa_pendente">Tarefas Pendentes</option>
+                <option value="tarefa_realizada">Tarefas Realizadas</option>
             </select>
         </div>
         <div class="task_list">            
@@ -44,6 +46,33 @@
             
         </div>
     </section>
+
+    {{-- JavaScript --}}
+    <script>
+        function mudarEstatosTarefa(e){
+            if(e.value == 'tarefa_pendente'){
+                //showTodasTarefas();
+                document.querySelectorAll('.tarefa_realizada').forEach(function(element){
+                    element.style.display = 'none';
+                })
+            }else if(e.value == 'tarefa_realizada'){
+                showTodasTarefas()
+                document.querySelectorAll('.tarefa_pendente').forEach(function(element){
+                    element.style.display = 'none';
+                })
+            }else{
+                showTodasTarefas();
+            }
+        }
+
+        function showTodasTarefas(){
+            
+            document.querySelectorAll('.task').forEach(function(element){
+                element.style.display = 'block';
+            });
+            
+        }
+    </script>
     <script>
         async function tarefaUpdate(element){
             let status = element.checked;
